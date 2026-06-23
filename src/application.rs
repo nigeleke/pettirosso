@@ -66,7 +66,7 @@ impl Model {
         self.registered.iter()
     }
 
-    fn generate_round_robin(&mut self) {
+    pub fn generate_round_robin(&mut self) {
         let mut n = self.registered.len();
         let mut players = self.registered.clone();
 
@@ -106,7 +106,7 @@ impl Model {
             });
         }
 
-        dioxus::prelude::info!("{:#?}", self.rounds);
+        self.rounds.shuffle(&mut rng);
     }
 
     pub fn round_number(&self) -> usize {

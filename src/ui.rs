@@ -71,7 +71,10 @@ fn NavBar() -> Element {
             }
             button {
                 class: page_class(Page::Round),
-                onclick: move |_| model.write().set_page(Page::Round),
+                onclick: move |_| model.with_mut(|m| {
+                    m.generate_round_robin();
+                    m.set_page(Page::Round);
+                }),
                 "Rounds"
             }
         }
@@ -197,13 +200,13 @@ fn RoundPage() -> Element {
                     class: "round__navigation",
                     button {
                         disabled: *round_number.read() == 0,
-                        onclick: move |_| round_number.with_mut(|n| *n = *n - 1),
+                        onclick: move |_| round_number.with_mut(|n| *n -= 1),
                         "<"
                     }
                     span { "Round: {*round_number.read() + 1}" }
                     button {
                         disabled: *round_number.read() == rounds.read().len() - 1,
-                        onclick: move |_| round_number.with_mut(|n| *n = *n + 1),
+                        onclick: move |_| round_number.with_mut(|n| *n += 1),
                         ">"
                     }
                 }

@@ -3,7 +3,7 @@ use std::cmp::{Ord, Ordering};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Player {
     pub id: Uuid,
     pub name: String,
@@ -16,15 +16,6 @@ impl Player {
     }
 }
 
-impl Default for Player {
-    fn default() -> Self {
-        Self {
-            id: Default::default(),
-            name: Default::default(),
-        }
-    }
-}
-
 impl Ord for Player {
     fn cmp(&self, other: &Self) -> Ordering {
         self.name.cmp(&other.name)
@@ -33,7 +24,7 @@ impl Ord for Player {
 
 impl PartialOrd for Player {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        self.name.partial_cmp(&other.name)
+        Some(self.cmp(other))
     }
 }
 
@@ -43,7 +34,7 @@ impl std::fmt::Display for Player {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Match(Player, Player);
 
 impl Match {
@@ -60,7 +51,7 @@ impl Match {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Round(Vec<Match>);
 
 impl Round {
