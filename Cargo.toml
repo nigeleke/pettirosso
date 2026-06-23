@@ -1,0 +1,17 @@
+[package]
+name = "pettirosso"
+version = "0.1.0"
+authors = ["Nigel Eke <nigeleke@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+dioxus = { version = "0.7.1", features = [] }
+dioxus-sdk = { version = "0.7.0", features = ["storage"] }
+getrandom = { version = "0.4.3", features = ["wasm_js"] }
+rand = "0.10.1"
+serde = { version = "1.0.228", features = ["derive"] }
+uuid = { version = "1.23.3", features = ["v4", "serde", "js"] }
+
+[features]
+default = ["web"]
+web = ["dioxus/web"]
