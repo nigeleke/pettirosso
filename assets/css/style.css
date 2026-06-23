@@ -104,8 +104,11 @@ a:hover {
 
     button {
         padding-inline: 1rem;
-        white-space: normal;
         text-align: center;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
