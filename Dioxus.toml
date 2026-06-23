@@ -1,4 +1,11 @@
 [application]
+name = "pettirosso"
 
 [web.app]
 title = "Pettirosso"
+#uncomment for gh-pages deploy.
+#base_path = "pettirosso/app"
+
+[bundle]
+identifier = "io.github.nigeleke"
+publisher = "Nigel Eke"
