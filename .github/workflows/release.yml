@@ -9,7 +9,7 @@ jobs:
     tags:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
             - uses: nigeleke/github/.github/actions/cargo-verify-version-vs-tag@main
             - shell: bash
               run: |
@@ -37,7 +37,7 @@ jobs:
             - uses: nigeleke/github/.github/actions/dockerhub-publish@main
               with:
                   platforms: linux/amd64,linux/arm64
-                  tags: nigeleke/scopa:latest,nigeleke/scopa:${{ github.sha }}
+                  tags: nigeleke/pettirosso:latest,nigeleke/pettirosso:${{ github.sha }}
             - shell: bash
               run: |
                   echo "dockerhub publish"
