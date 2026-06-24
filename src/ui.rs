@@ -17,10 +17,6 @@ pub fn App() -> Element {
         document::Link { rel: "icon", href: asset!("/assets/favicon.ico") }
         document::Link { rel: "stylesheet", href: asset!("/assets/css/style.css") }
 
-        document::Link { rel: "preconnect", href: "https://fonts.googleapis.com" }
-        document::Link { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "true" }
-        document::Link { rel:"stylesheet", href: "https://fonts.googleapis.com/css2?family=`Momo+Trust+Sans:wght@200..800&display=swap"}
-
         header { h1 { "Pettirosso" } }
         main {
             NavBar {}
@@ -139,7 +135,7 @@ fn EditablePlayerList(
                     id: "{player.id}",
                     button {
                         onclick: move |_| on_edit.call(player.id),
-                        "{edit_action}"
+                        {edit_action.to_string()}
                     }
                     span { {player.name} }
                 }
@@ -174,9 +170,14 @@ fn RegistrationPage() -> Element {
 #[component]
 fn RoundPage() -> Element {
     let model = use_context::<Signal<Model>>();
-    let rounds = use_signal(|| Vec::from_iter(model.read().rounds().cloned()));
-    let mut round_number = use_signal(|| model.read().round_number());
+    let mut rounds = use_signal(Vec::default);
+    let mut round_number = use_signal(|| 0);
     let mut round = use_signal(|| None);
+
+    use_effect(move || {
+        rounds.set(Vec::from_iter(model.read().rounds().cloned()));
+        round_number.set(model.read().round_number());
+    });
 
     use_effect(move || {
         round.set(rounds.read().get(*round_number.read()).cloned());

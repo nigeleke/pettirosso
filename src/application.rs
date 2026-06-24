@@ -1,4 +1,4 @@
-use rand::prelude::*;
+use fastrand;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -75,8 +75,7 @@ impl Model {
             n += 1;
         }
 
-        let mut rng = rand::rng();
-        players.shuffle(&mut rng);
+        fastrand::shuffle(&mut players);
 
         self.rounds = Vec::new();
         self.round_number = 0;
@@ -106,7 +105,7 @@ impl Model {
             });
         }
 
-        self.rounds.shuffle(&mut rng);
+        fastrand::shuffle(&mut self.rounds);
     }
 
     pub fn round_number(&self) -> usize {
