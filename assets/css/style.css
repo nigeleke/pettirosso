@@ -3,7 +3,7 @@
     src:
         url("momotrustsans-variablefont_wght-webfont.woff2") format("woff2"),
         url("momotrustsans-variablefont_wght-webfont.woff") format("woff");
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -13,7 +13,7 @@
     --color-surface-2: hsl(from var(--color-background) h 50% 80%);
 
     --color-text: #f8f8ff;
-    --color-text-secondary: #4f4f4f;
+    --color-text-secondary: #2f2f2f;
     --color-text-muted: #9ca9a3;
 
     --color-border: #2a3b34;
@@ -37,7 +37,7 @@ html {
 * {
     font-family: "Momo Trust Sans", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 200;
+    font-weight: 400;
     font-style: normal;
     box-sizing: border-box;
     margin: 0;
@@ -94,6 +94,7 @@ button {
 
 input {
     border-radius: 15px;
+    color: var(--color-text-secondary);
 }
 
 a {
@@ -112,6 +113,7 @@ a:hover {
     gap: 1rem;
 
     button {
+        color: var(--color-text-secondary);
         padding-inline: 1rem;
         text-align: center;
         min-width: 0;
@@ -123,10 +125,12 @@ a:hover {
 
 .nav-bar__current-page {
     background-color: var(--color-surface);
+    color: var(--color-text);
 }
 
 .nav-bar__other-page {
     background-color: var(--color-surface-2);
+    color: var(--color-text);
 }
 
 .player-pool {
@@ -177,7 +181,7 @@ a:hover {
 
 .round {
     display: grid;
-    grid-template-rows: min-content min-content;
+    grid-template-rows: min-content min-content 1fr;
     gap: 2rem;
 }
 
@@ -209,4 +213,13 @@ a:hover {
     flex-direction: row;
     justify-content: space-between;
     gap: 2rem;
+}
+
+.round__reset {
+    align-self: end;
+}
+
+.round__reset__button {
+    background-color: var(--color-warning);
+    color: var(--color-text-secondary);
 }

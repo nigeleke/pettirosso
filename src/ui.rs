@@ -67,10 +67,7 @@ fn NavBar() -> Element {
             }
             button {
                 class: page_class(Page::Round),
-                onclick: move |_| model.with_mut(|m| {
-                    m.generate_round_robin();
-                    m.set_page(Page::Round);
-                }),
+                onclick: move |_| model.write().set_page(Page::Round),
                 "Rounds"
             }
         }
@@ -169,7 +166,7 @@ fn RegistrationPage() -> Element {
 
 #[component]
 fn RoundPage() -> Element {
-    let model = use_context::<Signal<Model>>();
+    let mut model = use_context::<Signal<Model>>();
     let mut rounds = use_signal(Vec::default);
     let mut round_number = use_signal(|| 0);
     let mut round = use_signal(|| None);
@@ -209,6 +206,14 @@ fn RoundPage() -> Element {
                         disabled: *round_number.read() == rounds.read().len() - 1,
                         onclick: move |_| round_number.with_mut(|n| *n += 1),
                         ">"
+                    }
+                }
+                div {
+                    class: "round__reset",
+                    button {
+                        class: "round__reset__button",
+                        onclick: move |_| model.write().generate_round_robin(),
+                        "Reschedule with same players"
                     }
                 }
             }
