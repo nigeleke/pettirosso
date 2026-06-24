@@ -16,7 +16,7 @@ A simple informal application written for the Ulladulla Scrabble Group, but can 
 
 The initial round is random; scores are not recorded, and subsequent rounds are unweighted so players get a variety of opponents.
 
-# Development
+## Development
 
 ```bash
 dx serve
