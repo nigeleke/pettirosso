@@ -128,7 +128,7 @@ fn IconButton(
             class: "icon-button",
             onclick: move |event| if let Some(handler) = onclick { handler.call(event) },
             ..attributes,
-            "{icon}"
+            "{icon.to_string()}"
         }
     }
 }
