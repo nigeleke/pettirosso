@@ -135,7 +135,7 @@ fn EditablePlayerList(
                     id: "{player.id}",
                     button {
                         onclick: move |_| on_edit.call(player.id),
-                        {edit_action.to_string()}
+                        {edit_action.clone()}
                     }
                     span { {player.name} }
                 }
