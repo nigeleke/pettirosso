@@ -5,11 +5,11 @@ authors = ["Nigel Eke <nigeleke@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-dioxus = { version = "0.7.1", features = [] }
-dioxus-sdk = { version = "0.7.0", features = ["storage"] }
-fastrand = { version = "2.4.1", features = ["js"] }
-serde = { version = "1.0.228", features = ["derive"] }
-uuid = { version = "1.23.3", features = ["v4", "serde", "js"] }
+dioxus = { version = "0.7", features = [] }
+dioxus-sdk = { version = "0.7", features = ["storage"] }
+fastrand = { version = "2.4", features = ["js"] }
+serde = { version = "1.0", features = ["derive"] }
+uuid = { version = "1.23", features = ["v4", "serde", "js"] }
 
 [features]
 default = ["web"]
