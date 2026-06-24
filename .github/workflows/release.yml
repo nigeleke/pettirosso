@@ -22,27 +22,6 @@ jobs:
         with:
             platform: web
 
-    publish-docker-image:
-        needs: [bundle]
-        runs-on: ubuntu-latest
-        env:
-            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        steps:
-            - uses: nigeleke/github/.github/actions/rust-setup@main
-            - shell: bash
-              run: |
-                  echo "rust setup"
-                  git status
-            - uses: nigeleke/github/.github/actions/dockerhub-publish@main
-              with:
-                  platforms: linux/amd64,linux/arm64
-                  tags: nigeleke/pettirosso:latest,nigeleke/pettirosso:${{ github.sha }}
-            - shell: bash
-              run: |
-                  echo "dockerhub publish"
-                  git status
-
     publish-site:
         needs: [bundle]
         uses: nigeleke/github/.github/workflows/rust-publish.yml@main
