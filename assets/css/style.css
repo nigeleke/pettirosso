@@ -89,11 +89,16 @@ footer {
 button {
     min-block-size: 32px;
     min-inline-size: 32px;
-    border-radius: 15px;
+    border-radius: 10px;
+    transition: opacity 50ms ease;
+}
+
+button:hover {
+    opacity: 0.8;
 }
 
 input {
-    border-radius: 15px;
+    border-radius: 10px;
     color: var(--color-text-secondary);
 }
 
@@ -105,6 +110,11 @@ a {
 
 a:hover {
     opacity: 0.7;
+}
+
+.icon-button {
+    font-size: 1.15rem;
+    font-weight: bold;
 }
 
 .nav-bar {
@@ -222,4 +232,5 @@ a:hover {
 .round__reset__button {
     background-color: var(--color-warning);
     color: var(--color-text-secondary);
+    padding-inline: 1rem;
 }

@@ -106,13 +106,29 @@ fn PlayerNameInput(on_add: EventHandler<String>) -> Element {
                 value,
                 onchange: move |e| value.set(e.value()),
             }
-            button {
+            IconButton {
+                icon: "+",
                 onclick: move |_| {
                     on_add.call(value());
                     value.set(String::default())
                 },
-                "+"
             }
+        }
+    }
+}
+
+#[component]
+fn IconButton(
+    icon: String,
+    #[props(default)] onclick: Option<EventHandler<MouseEvent>>,
+    #[props(extends = GlobalAttributes, extends = button)] attributes: Vec<Attribute>,
+) -> Element {
+    rsx! {
+        button {
+            class: "icon-button",
+            onclick: move |event| if let Some(handler) = onclick { handler.call(event) },
+            ..attributes,
+            "{icon}"
         }
     }
 }
@@ -130,9 +146,9 @@ fn EditablePlayerList(
                 li {
                     class: "editable-player-list__item",
                     id: "{player.id}",
-                    button {
+                    IconButton {
+                        icon: edit_action.clone(),
                         onclick: move |_| on_edit.call(player.id),
-                        {edit_action.clone()}
                     }
                     span { {player.name} }
                 }
@@ -196,16 +212,16 @@ fn RoundPage() -> Element {
                 }
                 div {
                     class: "round__navigation",
-                    button {
+                    IconButton {
+                        icon: "<",
                         disabled: *round_number.read() == 0,
                         onclick: move |_| round_number.with_mut(|n| *n -= 1),
-                        "<"
                     }
                     span { "Round: {*round_number.read() + 1}" }
-                    button {
+                    IconButton {
+                        icon: ">",
                         disabled: *round_number.read() == rounds.read().len() - 1,
                         onclick: move |_| round_number.with_mut(|n| *n += 1),
-                        ">"
                     }
                 }
                 div {
