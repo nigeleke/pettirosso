@@ -16,6 +16,10 @@ pub fn App() -> Element {
     rsx! {
         document::Link { rel: "icon", href: asset!("/assets/favicon.ico") }
         document::Link { rel: "stylesheet", href: asset!("/assets/css/style.css") }
+        document::Meta { name: "description", content: "Round-robin schedule generator." }
+        document::Meta { name: "category", content: "game" }
+        document::Meta { name: "keywords", content: "game,schedule,tournament" }
+        document::Meta { name: "author", content: "Nigel Eke" }
 
         header { h1 { "Pettirosso" } }
         main {
