@@ -1,6 +1,6 @@
 [package]
 name = "pettirosso"
-version = "0.1.5"
+version = "1.0.0"
 authors = ["Nigel Eke <nigeleke@gmail.com>"]
 edition = "2021"
 
